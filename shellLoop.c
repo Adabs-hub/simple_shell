@@ -55,7 +55,7 @@ int _atoi(char *s)
  * has_path - checks command path
  * @str: command string
  * Return: string with path
- */
+ 
 int has_path(data_t *param)
 {
 	char *tmp = NULL, *str = NULL;
@@ -101,7 +101,7 @@ int has_path(data_t *param)
 	}
 	return (1);
 }
-
+*/
 /**
  * shellLoop - simple shell loop
  * @param: command arguments array
