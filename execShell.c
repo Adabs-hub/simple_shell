@@ -40,13 +40,25 @@ int executeShell(data_t *param)
 	}
 	else
 	{
-		_puts(param->av[0]);
-		_puts(": 1: ");
-		_puts(param->path);
-		_puts(": not found");
-		_putchar('\n');
+		Print_N_err(param);
 		return (0);
 	}
 	return (status);
 }
 
+/**
+ * Print_N_err - print cmd not found err
+ * @param: data param
+ * Return: nothing
+ */
+void Print_N_err(data_t *param)
+{
+	param->errcount++;	
+	_puts(param->av[0]);
+	_puts(": ");
+	print_number(param->errcount);
+	_puts(": ");
+	_puts(param->path);
+	_puts(": not found");
+	_putchar('\n');
+}

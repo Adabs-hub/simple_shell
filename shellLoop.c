@@ -65,7 +65,7 @@ void shellLoop(data_t *param)
 
 	do {
 		if (interactive(param))
-			_puts("shell$ ");
+			_puts("$ ");
 		status = _getline(stdin, &line_str, buf);
 		if (status == -1)
 		{

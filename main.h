@@ -36,7 +36,8 @@ typedef struct data
 	char *path;
 	char *env_pathstr;
 	int lnflag;
-	int lncount;
+	unsigned int lncount;
+	int errcount;
 	int readfd;
 } data_t;
 
@@ -80,6 +81,7 @@ typedef struct builtInFunc
 	char **_reallocdp(char **ptr, unsigned int size, unsigned int new_len);
 	int cmp_chars(char str[], const char *delim);
 	int isInt(char *str);
+	void print_number(int num);
 
 
 	/*shell_loop.c*/
@@ -90,6 +92,7 @@ typedef struct builtInFunc
 
 	/*lunchShell.c*/
 	int executeShell(data_t *param);
+	void Print_N_err(data_t *param);
 
 	/*exit.c*/
 	int shellExit(data_t *param);

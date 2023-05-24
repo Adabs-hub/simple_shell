@@ -22,6 +22,27 @@ int isInt(char *str)
 	return (1);
 }
 
+
+/**
+ * print_number - prints integers numbers
+ * @n: inter to print to consol
+ * Return nothin
+ */
+
+void print_number(int n)
+{
+	unsigned int num = n;
+	if (n < 0)
+	{
+		_putchar('-');
+		num = -n;
+	}
+	if (num / 10)
+	print_number(num / 10);
+	_putchar(num % 10 + '0');
+}
+
+
 /**
  * cmp_chars - compare strings
  * @str: input string.
@@ -50,7 +71,11 @@ int cmp_chars(char str[], const char *delim)
 
 
 /**
- * _reallocdp - infor
+}
+ 
+i
+   _reallocdp - infor
+i
  * @ptr: ptr
  * @size: ptr lenngth
  * @new_len: new length
