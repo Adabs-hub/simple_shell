@@ -1,11 +1,10 @@
 #include "main.h"
 
 /**
- * copy_info - copies info to create
- * a new env or alias
- * @name: name (env or alias)
- * @value: value (env or alias)
- * Return: new env or alias.
+ * copy_info - copies info to create a new env or alias
+ * @name: name of env or alias
+ * @value: value of env or alias
+ * Return: pointer to new env or alias.
  */
 char *copy_info(char *name, char *value)
 {
@@ -26,7 +25,7 @@ char *copy_info(char *name, char *value)
 
 /**
  * interactive - returns true if shell is interactive mode
- * @info: struct address
+ * @param: application data
  *Return: if interactive mode 1 else 0
  */
 int interactive(data_t *param)

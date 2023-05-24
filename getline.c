@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * getLine - getline fucn
+ * _getline - getline fucn
  * @fstream: read file stream
  * @f: file
  * @f_len: file len

@@ -14,7 +14,6 @@ int executeShell(data_t *param)
 	run = get_buildInFunc(param->args[0]);
 	if (run != 0)
 		return (run(param) - 1);
-
 	if (handle_path(param) == 1)
 	{
 		child_pid = fork();
@@ -38,7 +37,7 @@ int executeShell(data_t *param)
 		}
 		else
 			waitpid(-1, &status, 0);
-	}	
+	}
 	else
 	{
 		_puts(param->av[0]);

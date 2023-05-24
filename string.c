@@ -86,7 +86,7 @@ char **split_tok(char *str, const char *delim)
 	if (str == NULL || _strlen(str) == 0)
 		return (NULL);
 	for (i = 0; str[i] != '\0'; i++)
-		if (str[i] == *delim && str[i + 1] != *delim)
+		if ((str[i] == *delim || str[i] == '\t') && str[i + 1] != *delim)
 			wc++;
 	array = malloc((wc + 2) * sizeof(*array));
 	if (array == NULL)
@@ -94,30 +94,29 @@ char **split_tok(char *str, const char *delim)
 		free(array);
 		return (NULL);
 	}
-	i = 0;
-	while (str[i] != '\0')
+	for (i = 0; str[i] != '\0'; )
 	{
-		if ((str[i] == *delim || str[i + 1] == '\0') && str[i + 1] != '\n')
+		if ((str[i] == *delim || str[i] == '\t') && i == offset)
 		{
-			array[j] = malloc((i - offset + 2) * sizeof(char));
+			if (str[i + 1] == '\n' || str[i + 1] == '\0')
+				break;
+			i++, offset++;
+				continue;
+		}
+		if ((str[i] == *delim || str[i] == '\t'
+					|| str[i + 1] == '\0') && str[i + 1] != '\n')
+		{
+			array[j] = malloc((i - offset + 1) * sizeof(char));
 			if (array[j] == NULL)
-			{
-				for (k = 0; k < j + 1; k++)
-					free(array[k]);
-				free(array);
 				return (NULL);
-			}
 			k = 0;
-			while (offset != i)
+			while (offset != i && (str[offset] != *delim || str[offset] != '\t'))
 				array[j][k++] = str[offset++];
 			array[j][k] = '\0';
-			offset++;
-			j++;
+			offset++, j++;
 		}
 		i++;
 	}
-/*	array[j - 1][k] = str[i - 1];
-	array[j - 1][k + 1] = '\0';*/
 	array[j] = NULL;
 	return (array);
 }

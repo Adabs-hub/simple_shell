@@ -1,10 +1,9 @@
 #include "main.h"
 
-
 /**
  * setEnv - set environmental variable
  * @param: data parameter
- * return: i
+ * Return: 1
  */
 
 int setEnv(data_t *param)
@@ -26,7 +25,7 @@ int setEnv(data_t *param)
 /**
  * unsetEnv - remove environmental variable
  * @param: data parameter
- * return: 1
+ * Return: 1
  */
 int unsetEnv(data_t *param)
 {

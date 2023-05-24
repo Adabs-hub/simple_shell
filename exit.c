@@ -2,8 +2,7 @@
 
 /**
  * shellExit - exit shell
- * @pipe: passed to args
- * @arg: exit status string
+ * @param: passed application data
  * Return: 1
  */
 

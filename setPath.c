@@ -1,29 +1,21 @@
 #include "main.h"
- 
 
+/**
+ * handle_path - handle command path by searching env PATH
+ * @param: app data info
+ * Return: 1 on success
+ */
 int handle_path(data_t *param)
 {
-	char *path = NULL; /*delim = "\t\n";
-	int i, k, j;*/
-	
+	char *path = NULL;
+
 	param->path = param->args[0];
 	if (param->lnflag == 1)
 	{
 		param->lncount++;
 		param->lnflag = 0;
 	}
-/*
-	for (i = 0, k = 0, j = 0; param->arg[i]; i++)
-	{
-		while (delim[j])
-			if (delim[j++] != param->arg[i])
-				k++;
-		j = 0;
-	}
 
-	if (!k)
-		return (2);
-*/
 	path = pathSearch(param);
 
 	if (path)
@@ -37,7 +29,7 @@ int handle_path(data_t *param)
 		return (1);
 	else if (*(param->arg) != '\n')
 		return (0);
-	
+
 	return (-1);
 }
 
