@@ -20,11 +20,15 @@ int shellExit(data_t *param)
 			}
 			else
 			{
-				_puts(param->av[0]);
-				_puts(": 5: ");
-				_puts(param->args[0]);
-				_puts(": Illigal number: ");
-				_puts(param->args[1]);
+				param->errcount++;
+				_puts_err(param->av[0]);
+				_puts_err(": ");
+				print_number(param->errcount);
+				_puts_err(": ");
+				_puts_err(param->args[0]);
+				_puts_err(": Illigal number: ");
+				_puts_err(param->args[1]);
+				_puts_err("\n");
 				return (0);
 
 			}

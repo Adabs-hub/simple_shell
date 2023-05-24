@@ -7,7 +7,7 @@
 
 void getSignal(int __attribute__((unused)) signal)
 {
-	write(STDOUT_FILENO, "\nshell$ ", 8);
+	write(STDOUT_FILENO, "\n$ ", 3);
 }
 
 /**
