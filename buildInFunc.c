@@ -16,7 +16,7 @@ int cdCommand(data_t *param)
 	else
 	{
 		if (chdir(param->args[1]) != 0)
-			_puts("shell$ ");
+			_puts("$ ");
 	}
 	return (1);
 }

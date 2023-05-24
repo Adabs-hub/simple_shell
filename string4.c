@@ -39,7 +39,7 @@ void print_number(int n)
 	}
 	if (num / 10)
 	print_number(num / 10);
-	_putchar(num % 10 + '0');
+	_putchar_err(num % 10 + '0');
 }
 
 
@@ -71,11 +71,7 @@ int cmp_chars(char str[], const char *delim)
 
 
 /**
-}
- 
-i
-   _reallocdp - infor
-i
+ *  _reallocdp - infor
  * @ptr: ptr
  * @size: ptr lenngth
  * @new_len: new length

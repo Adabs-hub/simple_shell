@@ -1,5 +1,5 @@
 B.\"Manpage for simple shell
-.\"Created by Adabogo Emmanuel & Egiku Esther
+.\"Created by Adabogo Emmanuel & Temi Adebayo
 .TH man 1 "16 Nov 2022" "0.1" "simple_shell man page"
 
 .SH NAME
@@ -42,4 +42,4 @@ Single space required after argument.
 
 
 .SH AUTHOR
-Adabogo Emmanuel  && Egiku Esther
+Adabogo Emmanuel  && Temi Adebayo

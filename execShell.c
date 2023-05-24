@@ -13,30 +13,37 @@ int executeShell(data_t *param)
 
 	run = get_buildInFunc(param->args[0]);
 	if (run != 0)
+	{
+		param->errcount++;
 		return (run(param) - 1);
+	}
 	if (handle_path(param) == 1)
 	{
 		child_pid = fork();
 		if (child_pid == -1)
 		{
-			perror("Error:");
+			_puts_err("Error:");
 			return (1);
 		}
 		if (child_pid == 0)
 		{
 			if (execve(param->path, param->args, param->_environ) == -1)
 			{
-				_puts("execve failed");
+				_puts_err("execve failed");
 				return (1);
 			}
 		}
 		else if (child_pid < 0)
 		{
-			_puts("fork failed");
+			_puts_err("fork failed");
 			return (1);
 		}
 		else
-			waitpid(-1, &status, 0);
+		{
+			wait(&status);
+			param->errcount++;
+		}
+
 	}
 	else
 	{
@@ -54,11 +61,11 @@ int executeShell(data_t *param)
 void Print_N_err(data_t *param)
 {
 	param->errcount++;	
-	_puts(param->av[0]);
-	_puts(": ");
+	_puts_err(param->av[0]);
+	_puts_err(": ");
 	print_number(param->errcount);
-	_puts(": ");
+	_puts_err(": ");
 	_puts(param->path);
-	_puts(": not found");
-	_putchar('\n');
+	_puts_err(": not found");
+	_putchar_err('\n');
 }

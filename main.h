@@ -22,9 +22,10 @@
  * @args: args data
  * @_environ: environs data
  * @path: path to exercute
- * @env_pathstr; strings in env PATH
+ * @env_pathstr: strings in env PATH
  * @lnflag: line flage
  * @lncount: line count
+ * @errcount: count number of err outputs
  * @readfd: read socket descripter
  */
 typedef struct data
@@ -83,6 +84,8 @@ typedef struct builtInFunc
 	int isInt(char *str);
 	void print_number(int num);
 
+	/*string5.c*/
+	int _putchar_err(char c);
 
 	/*shell_loop.c*/
 	void freeArray(char **array);
