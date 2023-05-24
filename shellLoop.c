@@ -64,25 +64,33 @@ void shellLoop(data_t *param)
 	ssize_t buf = 32, status = 0;
 
 	do {
-		_puts("shell$ ");
+		if (interactive(param))
+			_puts("shell$ ");
 		status = _getline(stdin, &line_str, buf);
 		if (status == -1)
+		{
+			if (interactive(param))
+				_putchar('\n');
 			break;
-		if (status == 1 /*|| line_str[0] == '\n' || line_str[0] == '\t'*/)
+		}
+		else if (status == 1 /*|| line_str[0] == '\n' || line_str[0] == '\t'*/)
 		{
 			free(line_str);
 			line_str = NULL;
 			continue;
 		}
-		/*line_str = rmComment(line_str);*/
-		param->args = split_tok(line_str, " ");
+		else
+		{
+			/*line_str = rmComment(line_str);*/
+			param->args = split_tok(line_str, " ");
 
-		status = shellExit(param);
-		if (status == 1)
+			status = shellExit(param);
+			if (status == 1)
 			break;
 
-		else if (status == 2)
-			executeShell(param);
+			else if (status == 2)
+				executeShell(param);
+		}
 
 		free(line_str);
 		freeArray(param->args);
