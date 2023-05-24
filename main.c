@@ -23,6 +23,12 @@ int setEnviron(data_t *param, char **environ)
 
 	param->args = NULL;
 	param->_environ = NULL;
+	param->av = NULL;
+	param->arg = NULL;
+	param->path = NULL;
+	param->env_pathstr = NULL;
+	param->lnflag = 0;
+	param->lncount = 0;
 	param->readfd = 1;
 	param->errcount = 0;
 
@@ -63,6 +69,7 @@ int main(int  __attribute__((unused)) ac, char **av, char **environ)
 	param.av = av;
 
 	shellLoop(&param);
+	freeParam(&param);
 
 	return (0);
 }

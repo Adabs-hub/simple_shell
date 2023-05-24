@@ -90,8 +90,11 @@ typedef struct builtInFunc
 	/*shell_loop.c*/
 	void freeArray(char **array);
 	void shellLoop(data_t *param);
-	int handle_path(data_t *param);
+	void freeParam(data_t *param);
 	int _atoi(char *s);
+
+	/*setPath.c*/
+	int handle_path(data_t *param);
 
 	/*lunchShell.c*/
 	int executeShell(data_t *param);

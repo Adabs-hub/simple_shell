@@ -10,11 +10,34 @@ void freeArray(char **array)
 {
 	int i = 0;
 
-	while (array[i] != NULL)
+	if (array != NULL)
 	{
-		free(array[i++]);
+		while (array[i] != NULL)
+		{
+			free(array[i++]);
+		}
+		free(array);
 	}
-	free(array);
+
+}
+
+/**
+ * freeParam - free structure param
+ * @param: program data param
+ * Return: nothing
+ */
+void freeParam(data_t *param)
+{
+	freeArray(param->av);
+	freeArray(param->args);
+	freeArray(param->_environ);
+
+	if (param->arg)
+		free(param->arg);
+	if (param->path)
+		free(param->path);
+	if (param->env_pathstr)
+		free(param->env_pathstr);
 }
 
 
@@ -86,16 +109,18 @@ void shellLoop(data_t *param)
 
 			status = shellExit(param);
 			if (status == 1)
-			break;
-
+			{
+				free(line_str);
+				break;
+			}
 			else if (status == 2)
 				executeShell(param);
 		}
 
 		free(line_str);
 		freeArray(param->args);
-		param->args = NULL;
 		line_str = NULL;
+		param->args = NULL;
 		/*_putchar('\n');*/
 	} while (status + 1);
 
