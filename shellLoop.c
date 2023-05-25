@@ -87,7 +87,7 @@ void shellLoop(data_t *param)
 		if (status == -1)
 		{
 			if (interactive(param))
-				_putchar_err('\n');
+				_putchar('\n');
 			free(line_str);
 			freeParam(param);
 			exit(0);
