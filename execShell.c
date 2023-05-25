@@ -11,12 +11,9 @@ int executeShell(data_t *param)
 	pid_t child_pid;
 	int status, (*run)(data_t *);
 
-	run = get_buildInFunc(param->args[0]);
+	run = get_buildInFunc(param);
 	if (run != 0)
-	{
-		param->errcount++;
 		return (run(param) - 1);
-	}
 	if (handle_path(param) == 1)
 	{
 		child_pid = fork();
@@ -43,7 +40,6 @@ int executeShell(data_t *param)
 			wait(&status);
 			param->errcount++;
 		}
-
 	}
 	else
 	{
@@ -60,7 +56,7 @@ int executeShell(data_t *param)
  */
 void Print_N_err(data_t *param)
 {
-	param->errcount++;	
+	param->errcount++;
 	_puts_err(param->av[0]);
 	_puts_err(": ");
 	print_number(param->errcount);

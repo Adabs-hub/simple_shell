@@ -28,16 +28,9 @@ void freeArray(char **array)
  */
 void freeParam(data_t *param)
 {
-	freeArray(param->av);
 	freeArray(param->args);
 	freeArray(param->_environ);
 
-	if (param->arg)
-		free(param->arg);
-	if (param->path)
-		free(param->path);
-	if (param->env_pathstr)
-		free(param->env_pathstr);
 }
 
 
@@ -94,9 +87,9 @@ void shellLoop(data_t *param)
 		{
 			if (interactive(param))
 				_putchar('\n');
-			break;
+			exit(0);
 		}
-		else if (status == 1 /*|| line_str[0] == '\n' || line_str[0] == '\t'*/)
+		if (word_count(line_str) == 0)
 		{
 			free(line_str);
 			line_str = NULL;
@@ -116,12 +109,10 @@ void shellLoop(data_t *param)
 			else if (status == 2)
 				executeShell(param);
 		}
-
 		free(line_str);
 		freeArray(param->args);
 		line_str = NULL;
 		param->args = NULL;
-		/*_putchar('\n');*/
 	} while (status + 1);
 
 }

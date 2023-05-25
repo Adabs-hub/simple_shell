@@ -6,7 +6,7 @@
  * Return: pointer to function pointer
  */
 
-int (*get_buildInFunc(char *arg))(data_t *)
+int (*get_buildInFunc(data_t *param))(data_t *)
 {
 	buildIn_f func_arr[] = {
 	{"cd", runCdFunc},
@@ -21,8 +21,11 @@ int (*get_buildInFunc(char *arg))(data_t *)
 
 	while (i < 6)
 	{
-		if ((_strcmp(func_arr[i].arg, arg) == 0))
+		if ((_strcmp(func_arr[i].arg, param->args[0]) == 0))
+		{
+			param->errcount++;
 			return (func_arr[i].f);
+		}
 		i++;
 	}
 	return (0);

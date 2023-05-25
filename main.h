@@ -86,6 +86,7 @@ typedef struct builtInFunc
 
 	/*string5.c*/
 	int _putchar_err(char c);
+	int word_count(char *str);
 
 	/*shell_loop.c*/
 	void freeArray(char **array);
@@ -114,7 +115,7 @@ typedef struct builtInFunc
 	int hdlCtrlCommand(data_t *param);
 
 	/*buildInFunc2.c*/
-	int (*get_buildInFunc(char *arg))(data_t *param);
+	int (*get_buildInFunc(data_t *param))(data_t *param);
 
 	/*getEnv.c*/
 	int printEnv(data_t *param);
