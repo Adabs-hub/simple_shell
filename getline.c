@@ -8,7 +8,7 @@
  * Return: number char printe
  */
 
-ssize_t _getline(FILE *fstream, char **f, size_t f_len)
+ssize_t _getline(char **f, size_t *f_len, FILE *fstream)
 {
 	static ssize_t i;
 	char c = 'c', *buffer = malloc(f_len + 1);

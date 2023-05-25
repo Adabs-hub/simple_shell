@@ -78,12 +78,14 @@ int _atoi(char *s)
 void shellLoop(data_t *param)
 {
 	char *line_str = NULL;
-	ssize_t buf = 32, status = 0;
+	size_t buf = 32;
+	ssize_t status = 0;
 
 	do {
 		if (interactive(param))
 			_puts("$ ");
-		status = _getline(stdin, &line_str, buf);
+		/*status = _getline(&line_str, &buf, stdin);*/
+		status = getline(&line_str, &buf, stdin);
 		if (status == -1)
 		{
 			if (interactive(param))

@@ -56,7 +56,7 @@ typedef struct builtInFunc
 } buildIn_f;
 
 	/*getline.c*/
-	ssize_t _getline(FILE *fstream, char **f, size_t f_len);
+	ssize_t _getline(char **f, size_t *f_len, FILE *fstream);
 
 	/*main.c*/
 	void getSignal(int signal);
