@@ -39,12 +39,14 @@ char *_strdup(char *str)
 	len = _strlen(str);
 	buffer = (char *)malloc(sizeof(char) *	(len + 1));
 	if (buffer == 0)
-		return (0);
-	while (i < len)
+		return (NULL);
+	while (str[i] != '\0')
 	{
 		buffer[i] = str[i];
 		i++;
 	}
+	buffer[i] = '\0';
+
 	return (buffer);
 }
 

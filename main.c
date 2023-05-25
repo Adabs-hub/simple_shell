@@ -35,13 +35,14 @@ int setEnviron(data_t *param, char **environ)
 	while (environ[j] != NULL)
 		j++;
 
-	param->_environ =  malloc(sizeof(environ) * (j + 1));
+	param->_environ =  malloc(sizeof(char *) * (j + 1));
 	if (param->_environ == NULL)
 		return (0);
 
-	for (j = 0; environ[j]; j++)
+	for (j = 0; environ[j] != NULL; )
 	{
 		param->_environ[j] = _strdup(environ[j]);
+		j++;
 	}
 
 	param->_environ[j] = NULL;
