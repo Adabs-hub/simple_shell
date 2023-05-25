@@ -40,8 +40,8 @@ int shellExit(data_t *param)
 		}
 		else
 		{
-			free(param->args);
-			free(param);
+			free(param->arg);
+			freeParam(param);
 			exit(0);
 			return(1);
 		}
