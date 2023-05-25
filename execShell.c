@@ -29,9 +29,7 @@ int executeShell(data_t *param)
 				_puts_err("execve failed");
 				free(param->arg);
 				freeParam(param);
-				if (errno == EACCES)
 					exit(127);
-				return (1);
 			}
 		}
 		else if (child_pid < 0)
@@ -46,10 +44,7 @@ int executeShell(data_t *param)
 		}
 	}
 	else
-	{
 		Print_N_err(param);
-		return (0);
-	}
 	return (status);
 }
 

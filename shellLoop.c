@@ -86,6 +86,8 @@ void shellLoop(data_t *param)
 		status = _getline(stdin, &line_str, buf);
 		if (status == -1)
 		{
+			if (interactive(param))
+				_putchar_err('\n');
 			free(line_str);
 			break;
 		}
