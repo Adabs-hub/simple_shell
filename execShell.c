@@ -20,7 +20,7 @@ int executeShell(data_t *param)
 		if (child_pid == -1)
 		{
 			_puts_err("Error:");
-			exit (87);
+			exit(87);
 		}
 		if (child_pid == 0)
 		{
