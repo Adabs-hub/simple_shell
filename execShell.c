@@ -20,7 +20,7 @@ int executeShell(data_t *param)
 		if (child_pid == -1)
 		{
 			_puts_err("Error:");
-			return (1);
+			exit (87);
 		}
 		if (child_pid == 0)
 		{
@@ -35,7 +35,7 @@ int executeShell(data_t *param)
 		else if (child_pid < 0)
 		{
 			_puts_err("fork failed");
-			return (1);
+			exit(2);
 		}
 		else
 		{
@@ -60,7 +60,7 @@ void Print_N_err(data_t *param)
 	_puts_err(": ");
 	print_number(param->errcount);
 	_puts_err(": ");
-	_puts(param->path);
+	_puts_err(param->path);
 	_puts_err(": not found");
 	_putchar_err('\n');
 	if (!interactive(param))
