@@ -43,7 +43,7 @@ int shellExit(data_t *param)
 			free(param->arg);
 			freeParam(param);
 			exit(0);
-			return(1);
+			return (1);
 		}
 	}
 	return (2);
