@@ -11,7 +11,7 @@
 ssize_t _getline(char **f, size_t *f_len, FILE *fstream)
 {
 	static ssize_t i;
-	char c = 'c', *buffer = malloc(f_len + 1);
+	char c = 'c', *buffer = malloc(*f_len + 1);
 	ssize_t getnum;
 	int count;
 
@@ -22,7 +22,7 @@ ssize_t _getline(char **f, size_t *f_len, FILE *fstream)
 	else
 		return (-1);
 
-	buffer[f_len] = '\0';
+	buffer[*f_len] = '\0';
 	i = 0;
 	while (c != '\n')
 	{
@@ -43,7 +43,7 @@ ssize_t _getline(char **f, size_t *f_len, FILE *fstream)
 		}
 		buffer[i++] = '\n';
 		buffer[i] =  '\0';
-		copyPtr(f, &f_len, buffer, i);
+		copyPtr(f, f_len, buffer, i);
 		getnum = i;
 	}
 	if (count != 0)

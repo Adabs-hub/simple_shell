@@ -85,7 +85,7 @@ void shellLoop(data_t *param)
 		if (interactive(param))
 			_puts("$ ");
 		/*status = _getline(&line_str, &buf, stdin);*/
-		status = getline(&line_str, &buf, stdin);
+		status = _getline(&line_str, &buf, stdin);
 		if (status == -1)
 		{
 			if (interactive(param))
@@ -93,7 +93,7 @@ void shellLoop(data_t *param)
 			free(line_str);
 			break;
 		}
-		if (word_count(line_str) == 0)
+		if (word_count(line_str) == 0 || line_str == NULL)
 		{
 			free(line_str);
 			line_str = NULL;

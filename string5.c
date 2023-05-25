@@ -25,11 +25,11 @@ int word_count(char *str)
 
 	if (str != NULL)
 	{
-		if ((str[i] != ' ' || str[i] != '\t') && str[i] != '\n')
+		if ((str[i] != ' ' && str[i] != '\t') && str[i] != '\n')
 			wc++;
-		for (i = 0; str[i] != '\n'; i++)
-			if ((str[i] == ' ' || str[i] == '\t') && ((str[i + 1] != ' '
-							|| str[i + 1] != '\t') && str[i + 1] != '\n'))
+		for (i = 0; (str[i] != '\n'); i++)
+			if ((str[i] == ' ' && str[i] == '\t') || ((str[i + 1] != ' '
+							&& str[i + 1] != '\t') && str[i + 1] != '\n'))
 				wc++;
 	}
 	return (wc);

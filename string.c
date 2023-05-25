@@ -10,8 +10,9 @@ size_t _strlen(char *str)
 {
 	size_t size = 0;
 
-	while (str[size] != '\0')
-		size++;
+	if (str != NULL)
+		while (str[size] != '\0')
+			size++;
 
 	return (size);
 }
