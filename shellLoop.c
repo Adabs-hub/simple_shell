@@ -31,6 +31,7 @@ void freeParam(data_t *param)
 	freeArray(param->args);
 	freeArray(param->_environ);
 
+
 }
 
 
@@ -85,9 +86,8 @@ void shellLoop(data_t *param)
 		status = _getline(stdin, &line_str, buf);
 		if (status == -1)
 		{
-			if (interactive(param))
-				_putchar('\n');
-			exit(0);
+			free(line_str);
+			break;
 		}
 		if (word_count(line_str) == 0)
 		{
@@ -97,7 +97,7 @@ void shellLoop(data_t *param)
 		}
 		else
 		{
-			/*line_str = rmComment(line_str);*/
+			param->arg = line_str;
 			param->args = split_tok(line_str, " ");
 
 			status = shellExit(param);

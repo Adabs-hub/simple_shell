@@ -10,6 +10,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <signal.h>
+#include <errno.h>
 #include <stdio.h>
 #include <limits.h>
 

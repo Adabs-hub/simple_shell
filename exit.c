@@ -8,6 +8,8 @@
 
 int shellExit(data_t *param)
 {
+	int err;
+
 	if (_strcmp(param->args[0], "exit") == 0)
 	{
 		/*check if int*/
@@ -15,7 +17,10 @@ int shellExit(data_t *param)
 		{
 			if (isInt(param->args[1]))
 			{
-				exit(_atoi(param->args[1]));
+				err = _atoi(param->args[1]);
+				free(param->arg);
+				freeParam(param);
+				exit(err);
 				return (1);
 			}
 			else

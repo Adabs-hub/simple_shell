@@ -27,6 +27,10 @@ int executeShell(data_t *param)
 			if (execve(param->path, param->args, param->_environ) == -1)
 			{
 				_puts_err("execve failed");
+				free(param->arg);
+				freeParam(param);
+				if (errno == EACCES)
+					exit(127);
 				return (1);
 			}
 		}
@@ -64,4 +68,10 @@ void Print_N_err(data_t *param)
 	_puts(param->path);
 	_puts_err(": not found");
 	_putchar_err('\n');
+	if (!interactive(param))
+	{
+		free(param->arg);
+		freeParam(param);
+		exit(127);
+	}
 }
