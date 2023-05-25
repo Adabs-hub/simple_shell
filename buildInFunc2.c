@@ -2,7 +2,7 @@
 
 /**
  * get_buildInFunc - get select build in function
- * @arg: commands to run  (char)
+ * @param: commands to run  (char)
  * Return: pointer to function pointer
  */
 
