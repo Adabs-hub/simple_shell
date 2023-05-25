@@ -78,20 +78,19 @@ int _atoi(char *s)
 void shellLoop(data_t *param)
 {
 	char *line_str = NULL;
-	size_t buf = 32;
-	ssize_t status = 0;
+	ssize_t buf = 32, status = 0;
 
 	do {
 		if (interactive(param))
 			_puts("$ ");
-		/*status = _getline(&line_str, &buf, stdin);*/
-		status = _getline(&line_str, &buf, stdin);
+		status = _getline(&line_str,(size_t *) &buf, stdin);
 		if (status == -1)
 		{
 			if (interactive(param))
 				_putchar_err('\n');
 			free(line_str);
-			break;
+			freeParam(param);
+			exit(0);
 		}
 		if (word_count(line_str) == 0 || line_str == NULL)
 		{
@@ -103,7 +102,6 @@ void shellLoop(data_t *param)
 		{
 			param->arg = line_str;
 			param->args = split_tok(line_str, " ");
-
 			status = shellExit(param);
 			if (status == 1)
 			{
