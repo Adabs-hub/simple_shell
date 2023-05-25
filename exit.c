@@ -31,7 +31,7 @@ int shellExit(data_t *param)
 				print_number(param->errcount);
 				_puts_err(": ");
 				_puts_err(param->args[0]);
-				_puts_err(": Illigal number: ");
+				_puts_err(": Illegal number: ");
 				_puts_err(param->args[1]);
 				_puts_err("\n");
 				return (0);
