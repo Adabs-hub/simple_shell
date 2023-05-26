@@ -29,17 +29,24 @@ int executeShell(data_t *param)
 				_puts_err("execve failed");
 				free(param->arg);
 				freeParam(param);
-					exit(127);
+					exit(126);
 			}
+			param->status = 2;
 		}
 		else if (child_pid < 0)
 		{
 			_puts_err("fork failed");
-			exit(2);
+			exit(127);
 		}
 		else
 		{
 			wait(&status);
+			if (WIFEXITED(status) && !interactive(param))
+			{
+				free(param->arg);
+				freeParam(param);
+				exit(2);
+			}
 			param->errcount++;
 		}
 	}

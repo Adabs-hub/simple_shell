@@ -1,6 +1,32 @@
 #include "main.h"
 
 /**
+ * handle_getline_err - handle -1 returned fro getline
+ * @param: data parameter
+ * Return: nothing
+ */
+void handle_getlin_err(data_t *param)
+{
+	
+	if (!interactive(param))
+	{
+		if (param->status == 2)
+		{
+			if (param->arg != NULL)
+				free(param->arg);
+			freeParam(param);
+			exit(2);
+		}
+	}
+	else
+	{
+		free(param->arg);
+		freeParam(param);
+		exit(0);
+	}
+}
+
+/**
  * shellExit - exit shell
  * @param: passed application data
  * Return: 1
@@ -42,7 +68,7 @@ int shellExit(data_t *param)
 		{
 			free(param->arg);
 			freeParam(param);
-			exit(0);
+			exit(2);
 			return (1);
 		}
 	}

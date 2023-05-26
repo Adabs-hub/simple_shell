@@ -28,8 +28,9 @@ int setEnviron(data_t *param, char **environ)
 	param->path = NULL;
 	param->env_pathstr = NULL;
 	param->lnflag = 0;
+	param->status = 0;
 	param->lncount = 0;
-	param->readfd = 1;
+	param->readfd = 0;
 	param->errcount = 0;
 
 	while (environ[j] != NULL)

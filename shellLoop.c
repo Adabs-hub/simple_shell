@@ -68,7 +68,6 @@ int _atoi(char *s)
 	return (result);
 }
 
-
 /**
  * shellLoop - simple shell loop
  * @param: command arguments array
@@ -86,11 +85,8 @@ void shellLoop(data_t *param)
 		status = getline(&line_str, (size_t *)&buf, stdin);
 		if (status == -1)
 		{
-			if (interactive(param))
-				_putchar('\n');
-			free(line_str);
-			freeParam(param);
-			exit(0);
+			param->arg = line_str;
+			handle_getlin_err(param);
 		}
 		if (word_count(line_str) == 0 || line_str == NULL)
 		{
