@@ -1,22 +1,36 @@
 #include "main.h"
 
 /**
- * handle_getline_err - handle -1 returned fro getline
+ * exit_frm_wait - check child pit exit code
+ * @status: status code for wait
+ * @param: data parameter
+ * Return: nothing
+ */
+
+void exit_frm_wait(int status, data_t *param)
+{
+	if (WIFEXITED(status) && !interactive(param))
+	{
+		free(param->arg);
+		freeParam(param);
+		exit(2);
+	}
+}
+
+/**
+ * handle_getlin_err - handle -1 returned fro getline
  * @param: data parameter
  * Return: nothing
  */
 void handle_getlin_err(data_t *param)
 {
-	
+
 	if (!interactive(param))
 	{
-		if (param->status == 2)
-		{
-			if (param->arg != NULL)
-				free(param->arg);
-			freeParam(param);
-			exit(2);
-		}
+		if (param->arg != NULL)
+			free(param->arg);
+		freeParam(param);
+		exit(2);
 	}
 	else
 	{

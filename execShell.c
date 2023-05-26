@@ -31,7 +31,6 @@ int executeShell(data_t *param)
 				freeParam(param);
 					exit(126);
 			}
-			param->status = 2;
 		}
 		else if (child_pid < 0)
 		{
@@ -41,12 +40,7 @@ int executeShell(data_t *param)
 		else
 		{
 			wait(&status);
-			if (WIFEXITED(status) && !interactive(param))
-			{
-				free(param->arg);
-				freeParam(param);
-				exit(2);
-			}
+			exit_frm_wait(status, param);
 			param->errcount++;
 		}
 	}

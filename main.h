@@ -38,7 +38,6 @@ typedef struct data
 	char *path;
 	char *env_pathstr;
 	int lnflag;
-	int status;
 	unsigned int lncount;
 	int errcount;
 	int readfd;
@@ -104,6 +103,7 @@ typedef struct builtInFunc
 	void Print_N_err(data_t *param);
 
 	/*exit.c*/
+	void exit_frm_wait(int status, data_t *param);
 	int shellExit(data_t *param);
 	char *rmComment(char *str);
 	void handle_getlin_err(data_t *param);
