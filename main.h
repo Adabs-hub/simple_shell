@@ -104,9 +104,12 @@ typedef struct builtInFunc
 
 	/*exit.c*/
 	void exit_frm_wait(int status, data_t *param);
-	int shellExit(data_t *param);
+	void shellExit(data_t *param);
 	char *rmComment(char *str);
 	void handle_getlin_err(data_t *param);
+
+	/*exit2.c*/
+	void exit_code_err(data_t *param);
 
 	/*stdlib.c*/
 	void *_realloc(char *ptr, unsigned int len, unsigned int new_len);

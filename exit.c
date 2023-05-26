@@ -37,7 +37,7 @@ void handle_getlin_err(data_t *param)
  * Return: 1
  */
 
-int shellExit(data_t *param)
+void shellExit(data_t *param)
 {
 	int err;
 
@@ -49,24 +49,19 @@ int shellExit(data_t *param)
 			if (isInt(param->args[1]))
 			{
 				err = _atoi(param->args[1]);
+				if (err < 0)
+				{
+					free(param->arg);
+					freeParam(param);
+					exit(2);
+				}
 				free(param->arg);
 				freeParam(param);
 				exit(err);
-				return (1);
 			}
 			else
 			{
-				param->errcount++;
-				_puts_err(param->av[0]);
-				_puts_err(": ");
-				print_number(param->errcount);
-				_puts_err(": ");
-				_puts_err(param->args[0]);
-				_puts_err(": Illegal number: ");
-				_puts_err(param->args[1]);
-				_puts_err("\n");
-				return (0);
-
+				exit_code_err(param);
 			}
 		}
 		else
@@ -74,10 +69,8 @@ int shellExit(data_t *param)
 			free(param->arg);
 			freeParam(param);
 			exit(0);
-			return (1);
 		}
 	}
-	return (2);
 }
 
 /**
