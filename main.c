@@ -72,5 +72,5 @@ int main(int  __attribute__((unused)) ac, char **av, char **environ)
 	shellLoop(&param);
 	freeParam(&param);
 
-	return (0);
+	exit(0);
 }

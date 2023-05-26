@@ -25,19 +25,10 @@ void exit_frm_wait(int status, data_t *param)
 void handle_getlin_err(data_t *param)
 {
 
-	if (!interactive(param))
-	{
 		if (param->arg != NULL)
 			free(param->arg);
 		freeParam(param);
-		exit(2);
-	}
-	else
-	{
-		free(param->arg);
-		freeParam(param);
 		exit(0);
-	}
 }
 
 /**
@@ -82,7 +73,7 @@ int shellExit(data_t *param)
 		{
 			free(param->arg);
 			freeParam(param);
-			exit(2);
+			exit(0);
 			return (1);
 		}
 	}
