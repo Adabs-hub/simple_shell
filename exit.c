@@ -9,7 +9,7 @@
 
 void exit_frm_wait(int status, data_t *param)
 {
-	if (WIFEXITED(status) && !interactive(param))
+	if (WEXITSTATUS(status) == 2)
 	{
 		free(param->arg);
 		freeParam(param);
@@ -24,11 +24,11 @@ void exit_frm_wait(int status, data_t *param)
  */
 void handle_getlin_err(data_t *param)
 {
-
-		if (param->arg != NULL)
-			free(param->arg);
-		freeParam(param);
-		exit(0);
+	if (interactive(param))
+		_putchar_err('\n');
+	free(param->arg);
+	freeParam(param);
+	exit(0);
 }
 
 /**
@@ -37,7 +37,7 @@ void handle_getlin_err(data_t *param)
  * Return: 1
  */
 
-void shellExit(data_t *param)
+int shellExit(data_t *param)
 {
 	int err;
 
@@ -62,15 +62,16 @@ void shellExit(data_t *param)
 			else
 			{
 				exit_code_err(param);
+				return (0);
 			}
 		}
 		else
 		{
 			free(param->arg);
-			freeParam(param);
-			exit(0);
+			return (1);
 		}
 	}
+	return (0);
 }
 
 /**

@@ -19,6 +19,7 @@
 /**
  * struct data - data
  * @av: main argument
+ * @er_status: erro status
  * @arg: com string
  * @args: args data
  * @_environ: environs data
@@ -32,6 +33,7 @@
 typedef struct data
 {
 	char **av;
+	int er_status;
 	char *arg;
 	char **args;
 	char **_environ;
@@ -104,7 +106,7 @@ typedef struct builtInFunc
 
 	/*exit.c*/
 	void exit_frm_wait(int status, data_t *param);
-	void shellExit(data_t *param);
+	int shellExit(data_t *param);
 	char *rmComment(char *str);
 	void handle_getlin_err(data_t *param);
 

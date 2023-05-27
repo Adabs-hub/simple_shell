@@ -98,7 +98,8 @@ void shellLoop(data_t *param)
 		{
 			param->arg = line_str;
 			param->args = split_tok(line_str, " ");
-			shellExit(param);
+			if (shellExit(param))
+				break;
 			executeShell(param);
 		}
 		free(line_str);
