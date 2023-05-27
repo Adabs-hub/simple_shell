@@ -26,14 +26,14 @@ ssize_t _getline(char **f, size_t *f_len, FILE *fstream)
 	i = 0;
 	while (c != '\n')
 	{
-		count = read(STDIN_FILENO, &c, 1);
+		count = read(STDIN_FILENO, &c, 1024);
 		if ((count == 0 && i == 0) || count == -1)
 		{
 			free(buffer);
 			return (-1);
 		}
 		if (i >= 32)
-			buffer = _realloc(buffer, i, i + 1);
+			buffer = _realloc(buffer, i, i + 32);
 
 		if (c != EOF && c != '\n')
 		{
