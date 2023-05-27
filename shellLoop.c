@@ -82,7 +82,7 @@ void shellLoop(data_t *param)
 	do {
 		if (interactive(param))
 			_puts("$ ");
-		status = _getline(&line_str, (size_t *)&buf, stdin);
+		status = getline(&line_str, (size_t *)&buf, stdin);
 		if (status == -1)
 		{
 			param->arg = line_str;
